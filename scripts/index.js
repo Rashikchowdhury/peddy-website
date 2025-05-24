@@ -24,8 +24,8 @@ const loadCategoryBtn = (categories) => {
         let categoryBtnContainer = document.createElement('div');
 
         categoryBtnContainer.innerHTML = `
-            <button id="${item.id}" onclick="changeBtnStyle(${item.id})" class="active btn btn-lg flex gap-2 text-2xl font-bold bg-white border border-pri-clr hover:bg-white hover:border-pri-clr">
-                <img src="${item.category_icon}" class="w-8"/>
+            <button id="${item.id}" onclick="changeBtnStyle(${item.id})" class="active btn btn-sm md:btn-lg flex gap-2 text-[10px] md:text-2xl font-bold bg-white border border-pri-clr hover:bg-white hover:border-pri-clr">
+                <img src="${item.category_icon}" class="w-4 md:w-8"/>
                 ${item.category}
             </button>
         `;
