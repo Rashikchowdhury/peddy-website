@@ -43,3 +43,7 @@ const changeBtnStyle = (id) => {
     }
     document.getElementById(id).classList.add("round-btn");
 }
+
+
+// fetch all pet's data
+const allPetsData = 
