@@ -98,3 +98,11 @@ const loadAllPets = (arr) => {
         petsContainer.append(div)
     })
 };
+
+const loader = document.getElementById("loader");
+const petsSection = document.getElementById("pets-section");
+
+setTimeout(() => {
+    loader.classList.add("hidden");
+    petsSection.classList.remove("hidden")
+}, 3000)
