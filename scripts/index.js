@@ -37,8 +37,8 @@ const loadCategoryBtn = (categories) => {
 // change category btn style on click
 const changeBtnStyle = (id) => {
     const buttons = document.getElementsByClassName("active");
-    
-    for(let btn of buttons){
+
+    for (let btn of buttons) {
         btn.classList.remove("round-btn")
     }
     document.getElementById(id).classList.add("round-btn");
@@ -46,4 +46,55 @@ const changeBtnStyle = (id) => {
 
 
 // fetch all pet's data
-const allPetsData = 
+const allPetsData = async () => {
+    const res = await fetch('https://openapi.programming-hero.com/api/peddy/pets');
+    const data = await res.json();
+    loadAllPets(data.pets);
+};
+
+allPetsData();
+
+const loadAllPets = (arr) => {
+    const petsContainer = document.getElementById("all-pets-container");
+    arr.forEach(item => {
+        const div = document.createElement("div");
+        div.innerHTML = `
+        <div class="w-80 p-5 shadow-xl rounded-xl">
+            <figure class="mb-6">
+                <img src="${item.image}"
+                alt="Shoes"
+                class="rounded-xl" />
+            </figure>
+            <div class="">
+                <h2 class="card-title mb-2">${item.pet_name}</h2>
+                <p class="flex gap-1">
+                    <img src="./images/breed.svg" />
+                    Breed: ${item.breed}
+                </p>
+                <p class="flex gap-1">
+                    <img src="./images/birth.svg" />
+                    Birth: ${item.date_of_birth}
+                </p>
+                <p class="flex gap-1">
+                    <img src="./images/gender.svg" />
+                    Gender: ${item.gender}
+                </p>
+                <p class="flex gap-1 mb-4">
+                    <img src="./images/price.svg" />
+                    Price: ${item.price}
+                </p>
+                <hr>
+                <div class="flex justify-between mt-4">
+                <button class="btn btn-sm">
+                    <img src="./images/like.svg" />
+                </button>
+                <button class="btn btn-sm">Adopt</button>
+                <button class="btn btn-sm">Details</button>
+                </div>
+            </div>
+        </div>
+        `;
+
+        petsContainer.append(div)
+    })
+};
