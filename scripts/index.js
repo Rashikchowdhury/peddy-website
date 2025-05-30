@@ -59,8 +59,8 @@ const loadAllPets = (arr) => {
     arr.forEach(item => {
         const div = document.createElement("div");
         div.innerHTML = `
-        <div class="w-80 p-5 shadow-xl rounded-xl">
-            <figure class="mb-6">
+        <div class="w-[90vw] md:w-80 p-5 shadow-xl rounded-xl">
+            <figure class="mb-6 flex justify-center">
                 <img src="${item.image}"
                 alt="Shoes"
                 class="rounded-xl" />
@@ -84,12 +84,12 @@ const loadAllPets = (arr) => {
                     Price: ${item.price}
                 </p>
                 <hr>
-                <div class="flex justify-between mt-4">
-                <button class="btn btn-sm">
+                <div class="flex justify-evenly md:justify-between mt-4">
+                <button class="btn btn-sm  border-pri-clr text-pri-clr bg-white hover:bg-pri-clr">
                     <img src="./images/like.svg" />
                 </button>
-                <button class="btn btn-sm">Adopt</button>
-                <button class="btn btn-sm">Details</button>
+                <button class="btn btn-sm border-pri-clr text-pri-clr bg-white hover:bg-pri-clr hover:text-white">Adopt</button>
+                <button class="btn btn-sm border-pri-clr text-pri-clr bg-white hover:bg-pri-clr hover:text-white">Details</button>
                 </div>
             </div>
         </div>
@@ -105,4 +105,4 @@ const petsSection = document.getElementById("pets-section");
 setTimeout(() => {
     loader.classList.add("hidden");
     petsSection.classList.remove("hidden")
-}, 3000)
+}, 1000)
