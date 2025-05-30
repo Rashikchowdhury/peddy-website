@@ -59,7 +59,7 @@ const loadAllPets = (arr) => {
     arr.forEach(item => {
         const div = document.createElement("div");
         div.innerHTML = `
-        <div class="  p-5 shadow-xl rounded-xl">
+        <div class="  lg:w-80 p-5 shadow-xl rounded-xl">
             <figure class="mb-6 flex justify-center">
                 <img src="${item.image}"
                 alt="Shoes"
