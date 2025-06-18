@@ -4,6 +4,7 @@ const categoriesData = async () => {
         let res = await fetch(`https://openapi.programming-hero.com/api/peddy/categories`);
         let data = await res.json();
         loadCategoryBtn(data.categories);
+        
     }
     catch (err) {
         console.error(err);
@@ -22,9 +23,8 @@ const loadCategoryBtn = (categories) => {
 
     categories.forEach(item => {
         let categoryBtnContainer = document.createElement('div');
-
         categoryBtnContainer.innerHTML = `
-            <button id="${item.id}" onclick="changeBtnStyle(${item.id})" class="active btn btn-sm md:btn-lg flex gap-2 text-[10px] md:text-2xl font-bold bg-white border border-pri-clr hover:bg-white hover:border-pri-clr">
+            <button id="${item.id}" onclick="changeBtnStyle(${item.id}); petsData(${item.category});" class="active btn btn-sm md:btn-lg flex gap-2 text-[10px] md:text-2xl font-bold bg-white border border-pri-clr hover:bg-white hover:border-pri-clr">
                 <img src="${item.category_icon}" class="w-4 md:w-8"/>
                 ${item.category}
             </button>
@@ -49,12 +49,12 @@ const changeBtnStyle = (id) => {
 const allPetsData = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/peddy/pets');
     const data = await res.json();
-    loadAllPets(data.pets);
+    loadPets(data.pets);
 };
 
 allPetsData();
 
-const loadAllPets = (arr) => {
+const loadPets = (arr) => {
     const petsContainer = document.getElementById("all-pets-container");
     arr.forEach(item => {
         const div = document.createElement("div");
@@ -102,7 +102,26 @@ const loadAllPets = (arr) => {
 const loader = document.getElementById("loader");
 const petsSection = document.getElementById("pets-section");
 
+// loader or spinner animation 
 setTimeout(() => {
     loader.classList.add("hidden");
     petsSection.classList.remove("hidden")
-}, 1000)
+}, 1000);
+
+// fetching data to get data by clicking individual categories button
+let petsData = async(x) => {
+    console.log(x);
+    const petsContainer = document.getElementById("all-pets-container");
+    petsContainer.innerHTML = "";
+    try{
+        let res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/cat`);
+        let data = await res.json();
+        loadPets(data.data)
+        
+    }
+    catch (err){
+        console.error(err);
+    }
+}
+
+// petsData();
